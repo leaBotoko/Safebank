@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeBank - FAQ</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: #1a1a1a;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 80px auto;
+            padding: 20px;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            color: #4CAF50;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 5px;
+        }
+
+        .categories {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            padding: 8px 15px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .category-btn.active {
+            background: #4CAF50;
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.05);
+            margin-bottom: 15px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question h3 {
+            font-size: 1.1rem;
+            color: #4CAF50;
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .faq-answer.active {
+            padding: 20px;
+            max-height: 500px;
+        }
+
+        .faq-answer p {
+            margin-bottom: 10px;
+        }
+
+        .faq-answer ul, .faq-answer ol {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+                margin-top: 60px;
+            }
+
+            .categories {
+                flex-direction: column;
+            }
+
+            .category-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <i class="fas fa-shield-alt"></i>
+            SafeBank
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="search-box">
+            <input type="text" placeholder="Rechercher une question..." id="searchInput">
+        </div>
+
+        <div class="categories">
+            <button class="category-btn active" data-category="all">Toutes les questions</button>
+            <button class="category-btn" data-category="account">Compte</button>
+            <button class="category-btn" data-category="security">Sécurité</button>
+            <button class="category-btn" data-category="mobile">Mobile</button>
+            <button class="category-btn" data-category="transfer">Transferts</button>
+        </div>
+
+        <div class="faq-list">
+            <!-- Compte -->
+            <div class="faq-item" data-category="account">
+                <div class="faq-question">
+                    <h3>Comment ouvrir un compte chez SafeBank ?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Pour ouvrir un compte, vous devez :</p>
+                    <ul>
+                        <li>Une pièce d'identité valide</li>
+                        <li>Un justificatif de domicile récent</li>
+                        <li>Un dépôt initial minimum de 50.000 FC</li>
+                    </ul>
+                    <p>Rendez-vous dans l'une de nos agences pour finaliser votre inscription.</p>
+                </div>
+            </div>
+
+            <!-- Sécurité -->
+            <div class="faq-item" data-category="security">
+                <div class="faq-question">
+                    <h3>Comment sécuriser mon compte en ligne ?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Voici les mesures recommandées :</p>
+                    <ul>
+                        <li>Activez l'authentification à deux facteurs</li>
+                        <li>Changez régulièrement votre mot de passe</li>
+                        <li>Ne partagez jamais vos identifiants</li>
+                        <li>Vérifiez régulièrement vos transactions</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Mobile -->
+            <div class="faq-item" data-category="mobile">
+                <div class="faq-question">
+                    <h3>Comment utiliser l'application mobile ?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Pour utiliser l'application mobile :</p>
+                    <ol>
+                        <li>Téléchargez l'application sur votre store</li>
+                        <li>Connectez-vous avec vos identifiants</li>
+                        <li>Activez la reconnaissance biométrique</li>
+                        <li>Commencez à gérer vos comptes</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Transferts -->
+            <div class="faq-item" data-category="transfer">
+                <div class="faq-question">
+                    <h3>Quels sont les frais de transfert ?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Nos frais de transfert :</p>
+                    <ul>
+                        <li>Entre comptes SafeBank : Gratuit</li>
+                        <li>Vers d'autres banques : 0.5%</li>
+                        <li>Transferts internationaux : 1%</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Gestion des questions/réponses
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('i');
+                
+                answer.classList.toggle('active');
+                icon.style.transform = answer.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0)';
+            });
+        });
+
+        // Filtrage par catégorie
+        document.querySelectorAll('.category-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                // Reset active state
+                document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const category = button.dataset.category;
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    if (category === 'all' || item.dataset.category === category) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Recherche
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', () => {
+            const searchTerm = searchInput.value.toLowerCase();
+            document.querySelectorAll('.faq-item').forEach(item => {
+                const question = item.querySelector('.faq-question h3').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+                
+                if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeBank - Connexion</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)),
+                        url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: #333;
+            padding: 80px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Header et Navigation */
+        header {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 1.2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #4CAF50;
+            text-decoration: none;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 2rem;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: rgba(76, 175, 80, 0.2);
+            color: #4CAF50;
+        }
+
+        /* Formulaire de connexion */
+        .login-container {
+            max-width: 450px;
+            width: 90%;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            margin: 0 auto;
+        }
+
+        .form-title {
+            text-align: center;
+            color: #333;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+        }
+
+        .form-group input.valid {
+            border-color: #4CAF50;
+            background-color: #f8fff8;
+        }
+
+        .form-group input.invalid {
+            border-color: #dc3545;
+            background-color: #fff8f8;
+        }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .error-message.visible {
+            display: block;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0.7;
+        }
+
+        .submit-btn.active {
+            opacity: 1;
+        }
+
+        .submit-btn:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+        }
+
+        .forgot-password {
+            text-align: right;
+            margin: 1rem 0;
+        }
+
+        .forgot-password a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .signup-link {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: #666;
+        }
+
+        .signup-link a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .login-container {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <i class="fas fa-shield-alt"></i>
+                SafeBank
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Accueil</a>
+                <a href="index.html#services">Services</a>
+                <a href="inscription.html">Inscription</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="login-container">
+        <h1 class="form-title">Connexion</h1>
+        <form id="login-form" novalidate>
+            <div class="form-group">
+                <label for="email">Email ou numéro de téléphone</label>
+                <input type="text" id="email" name="email" required>
+                <div class="error-message">Veuillez saisir votre email ou numéro de téléphone</div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Mot de passe</label>
+                <input type="password" id="password" name="password" required>
+                <div class="error-message">Veuillez saisir votre mot de passe</div>
+            </div>
+
+            <div class="forgot-password">
+                <a href="#">Mot de passe oublié ?</a>
+            </div>
+
+            <button type="submit" class="submit-btn" disabled>Se connecter</button>
+
+            <div class="signup-link">
+                Pas encore de compte ? <a href="inscription.html">S'inscrire</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('login-form');
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            const submitBtn = document.querySelector('.submit-btn');
+
+            function validateForm() {
+                const isEmailValid = emailInput.value.trim() !== '';
+                const isPasswordValid = passwordInput.value.trim() !== '';
+
+                emailInput.nextElementSibling.classList.toggle('visible', !isEmailValid);
+                passwordInput.nextElementSibling.classList.toggle('visible', !isPasswordValid);
+
+                emailInput.classList.toggle('valid', isEmailValid);
+                emailInput.classList.toggle('invalid', !isEmailValid);
+                passwordInput.classList.toggle('valid', isPasswordValid);
+                passwordInput.classList.toggle('invalid', !isPasswordValid);
+
+                submitBtn.disabled = !(isEmailValid && isPasswordValid);
+                submitBtn.classList.toggle('active', !submitBtn.disabled);
+            }
+
+            emailInput.addEventListener('input', validateForm);
+            passwordInput.addEventListener('input', validateForm);
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                if (submitBtn.disabled) {
+                    return;
+                }
+                console.log('Formulaire valide, tentative de connexion...');
+            });
+        });
+    </script>
+</body>
+</html>

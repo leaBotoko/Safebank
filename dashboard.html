@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeBank - Tableau de Bord</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        :root {
+            --primary-color: #4CAF50;
+            --danger-color: #dc3545;
+            --warning-color: #ffc107;
+            --success-color: #28a745;
+            --text-color: #333;
+            --bg-dark: #1a1a1a;
+            --bg-light: #f8f9fa;
+        }
+
+        body {
+            background: var(--bg-dark);
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 2rem;
+            position: fixed;
+            width: 250px;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0.8rem 1rem;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: rgba(76, 175, 80, 0.2);
+            color: var(--primary-color);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 250px;
+            padding: 2rem;
+        }
+
+        .welcome-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .account-status {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .status-active {
+            background: rgba(40, 167, 69, 0.2);
+            color: var(--success-color);
+        }
+
+        .status-blocked {
+            background: rgba(220, 53, 69, 0.2);
+            color: var(--danger-color);
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+        }
+
+        .balance {
+            font-size: 2rem;
+            margin: 1rem 0;
+        }
+
+        .account-number {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        /* Alerts Section */
+        .alerts-section {
+            margin-bottom: 2rem;
+        }
+
+        .alert {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            background: rgba(255, 193, 7, 0.1);
+        }
+
+        .alert-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .alert-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-confirm {
+            background: var(--success-color);
+            color: white;
+        }
+
+        .btn-deny {
+            background: var(--danger-color);
+            color: white;
+        }
+
+        /* Transactions Table */
+        .transactions-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .transactions-table th,
+        .transactions-table td {
+            padding: 1rem;
+            text-align: left;
+        }
+
+        .transactions-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: 500;
+        }
+
+        .transactions-table tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .transaction-status {
+            padding: 0.25rem 0.5rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        .status-completed {
+            background: rgba(40, 167, 69, 0.2);
+            color: var(--success-color);
+        }
+
+        .status-pending {
+            background: rgba(255, 193, 7, 0.2);
+            color: var(--warning-color);
+        }
+
+        .status-failed {
+            background: rgba(220, 53, 69, 0.2);
+            color: var(--danger-color);
+        }
+
+        /* Support Widget */
+        .support-widget {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--primary-color);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .support-widget:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 1rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <a href="index.html" class="logo">
+                <i class="fas fa-shield-alt"></i>
+                SafeBank
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active">
+                        <i class="fas fa-home"></i>
+                        Tableau de bord
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-exchange-alt"></i>
+                        Transactions
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-bell"></i>
+                        Alertes
+                        <span class="badge">3</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-cog"></i>
+                        Paramètres
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-question-circle"></i>
+                        Aide
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Déconnexion
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="welcome-header">
+                <div>
+                    <h1>Bienvenue, John Doe</h1>
+                    <p>Dernière connexion : 20 mars 2024 à 15:30</p>
+                </div>
+                <span class="account-status status-active">
+                    <i class="fas fa-check-circle"></i>
+                    Compte Actif
+                </span>
+            </div>
+
+            <!-- Account Summary Cards -->
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Solde disponible</h2>
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <div class="balance">1,250,000 FC</div>
+                    <div class="account-number">Compte N° : 000123456789</div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Dépenses du mois</h2>
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="balance">450,000 FC</div>
+                    <div class="account-number">15 transactions</div>
+                </div>
+            </div>
+
+            <!-- Security Alerts -->
+            <section class="alerts-section">
+                <h2>Alertes de sécurité</h2>
+                <div class="alert">
+                    <div class="alert-content">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <div>
+                            <h3>Connexion inhabituelle détectée</h3>
+                            <p>Une tentative de connexion depuis Kinshasa a été détectée le 20/03/2024</p>
+                        </div>
+                    </div>
+                    <div class="alert-actions">
+                        <button class="btn btn-confirm">Confirmer</button>
+                        <button class="btn btn-deny">Contester</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recent Transactions -->
+            <section>
+                <h2>Transactions récentes</h2>
+                <table class="transactions-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>Montant</th>
+                            <th>Statut</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>20/03/2024</td>
+                            <td>Transfert vers Jean Pierre</td>
+                            <td>-50,000 FC</td>
+                            <td><span class="transaction-status status-completed">Complété</span></td>
+                        </tr>
+                        <tr>
+                            <td>19/03/2024</td>
+                            <td>Dépôt en agence</td>
+                            <td>+200,000 FC</td>
+                            <td><span class="transaction-status status-completed">Complété</span></td>
+                        </tr>
+                        <tr>
+                            <td>18/03/2024</td>
+                            <td>Paiement facture SNEL</td>
+                            <td>-75,000 FC</td>
+                            <td><span class="transaction-status status-pending">En attente</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+
+    <!-- Support Widget -->
+    <div class="support-widget" onclick="window.location.href='contact.html'">
+        <i class="fas fa-headset"></i>
+    </div>
+
+    <script>
+        // Gestion des alertes
+        document.querySelectorAll('.btn-confirm, .btn-deny').forEach(button => {
+            button.addEventListener('click', function() {
+                const alert = this.closest('.alert');
+                alert.style.opacity = '0';
+                setTimeout(() => alert.remove(), 300);
+            });
+        });
+
+        // Simulation de compte bloqué
+        function simulateBlockedAccount() {
+            const statusBadge = document.querySelector('.account-status');
+            statusBadge.classList.remove('status-active');
+            statusBadge.classList.add('status-blocked');
+            statusBadge.innerHTML = '<i class="fas fa-lock"></i> Compte Bloqué';
+            
+            // Ajouter message d'alerte
+            const alertSection = document.querySelector('.alerts-section');
+            const blockAlert = document.createElement('div');
+            blockAlert.className = 'alert';
+            blockAlert.style.background = 'rgba(220, 53, 69, 0.1)';
+            blockAlert.innerHTML = `
+                <div class="alert-content">
+                    <i class="fas fa-lock"></i>
+                    <div>
+                        <h3>Compte temporairement bloqué</h3>
+                        <p>Pour votre sécurité, votre compte a été temporairement bloqué.</p>
+                    </div>
+                </div>
+                <button class="btn btn-confirm" onclick="simulateUnblock()">Débloquer mon compte</button>
+            `;
+            alertSection.prepend(blockAlert);
+        }
+
+        function simulateUnblock() {
+            // Simuler une vérification
+            const code = prompt('Veuillez entrer le code reçu par SMS :');
+            if (code) {
+                const statusBadge = document.querySelector('.account-status');
+                statusBadge.classList.remove('status-blocked');
+                statusBadge.classList.add('status-active');
+                statusBadge.innerHTML = '<i class="fas fa-check-circle"></i> Compte Actif';
+                
+                // Retirer l'alerte de blocage
+                const blockAlert = document.querySelector('.alert');
+                blockAlert.remove();
+            }
+        }
+    </script>
+</body>
+</html> 

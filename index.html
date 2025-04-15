@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeBank - Sécurité Bancaire Intelligente</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        /* Header et Navigation */
+        header {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 1.2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #4CAF50;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 2rem;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: rgba(76, 175, 80, 0.2);
+            color: #4CAF50;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)),
+                        url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 3rem;
+            color: white;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            letter-spacing: 1px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 2.5rem;
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .services h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-card h3 {
+            color: #4CAF50;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 4rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h3 {
+            color: #4CAF50;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section p, 
+        .footer-section a {
+            color: #999;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #4CAF50;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content {
+                padding: 2rem;
+                margin: 0 1rem;
+            }
+
+            .services {
+                padding: 4rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#" class="logo">SafeBank</a>
+            <div class="nav-links">
+                <a href="#services">Services</a>
+                <a href="#contact">Contact</a>
+                <a href="#login">Connexion</a>
+                <a href="#signup">S'inscrire</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>La banque du futur est là</h1>
+            <p>Sécurité maximale, surveillance en temps réel et protection avancée contre la fraude pour votre tranquillité d'esprit.</p>
+            <a href="#signup" class="cta-button">Commencer maintenant</a>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <h2>Nos Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Monitoring 24/7</h3>
+                <p>Surveillance continue de vos transactions avec détection instantanée des activités suspectes.</p>
+            </div>
+            <div class="service-card">
+                <h3>Protection Avancée</h3>
+                <p>Système de sécurité multicouche avec authentification biométrique.</p>
+            </div>
+            <div class="service-card">
+                <h3>Alertes Intelligentes</h3>
+                <p>Notifications instantanées pour toute activité inhabituelle sur votre compte.</p>
+            </div>
+            <div class="service-card">
+                <h3>Support Expert</h3>
+                <p>Une équipe dédiée disponible 24/7 pour répondre à vos besoins.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>Email<a href="safebank8@gmail.com">zigiservice8@gmail.com</a></p>
+                <p>Téléphone<a href="tel:+243832568229">+243 832 568 228</a></p>  
+                <p>Adresse: 123 Rue de la Sécurité</p>
+            </div>
+            <div class="footer-section">
+                <h3>Liens Rapides</h3>
+                <a href="#">À propos</a>
+                <a href="#">Services</a>
+                <a href="#">Tarifs</a>
+                <a href="#">FAQ</a>
+            </div>
+            <div class="footer-section">
+                <h3>Légal</h3>
+                <a href="#">Conditions générales</a>
+                <a href="#">Politique de confidentialité</a>
+                <a href="#">Mentions légales</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
