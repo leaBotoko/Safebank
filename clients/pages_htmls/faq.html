@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeBank - FAQ</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../pages_csss/faq.css"> 
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <i class="fas fa-shield-alt"></i>
+            SafeBank
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="search-box">
+            <input type="text" placeholder="Rechercher une question..." id="searchInput">
+        </div>
+
+        <div class="categories">
+            <button class="category-btn active" data-category="all">Toutes les questions</button>
+            <button class="category-btn" data-category="account">Compte</button>
+            <button class="category-btn" data-category="security">Sécurité</button>
+            <button class="category-btn" data-category="mobile">Mobile</button>
+            <button class="category-btn" data-category="transfer">Transferts</button>
+        </div>
+
+        <div class="faq-list">
+            <!-- Compte -->
+            <div class="faq-item" data-category="account">
+                <div class="faq-question">
+                    <h3>Comment ouvrir un compte chez SafeBank ?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Pour ouvrir un compte, vous devez :</p>
+                    <ul>
+                        <li>Une pièce d'identité valide</li>
+                        <li>Un justificatif de domicile récent</li>
+                        <li>Un dépôt initial minimum de 50.000 FC</li>
+                    </ul>
+                    <p>Rendez-vous dans l'une de nos agences pour finaliser votre inscription.</p>
+                </div>
+            </div>
+
+            <!-- Sécurité -->
+            <div class="faq-item" data-category="security">
+                <div class="faq-question">
+                    <h3>Comment sécuriser mon compte en ligne ?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Voici les mesures recommandées :</p>
+                    <ul>
+                       
+                        <li>Changez régulièrement votre mot de passe</li>
+                        <li>Ne partagez jamais vos identifiants</li>
+                        <li>Vérifiez régulièrement vos transactions</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Mobile -->
+            <div class="faq-item" data-category="mobile">
+                <div class="faq-question">
+                    <h3>Comment l'utiliser?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Pour l'utliser :</p>
+                    <ol>
+                        <li>allez sur le net</li>
+                        <li>Connectez-vous avec vos identifiants</li>
+                        <li>Commencez à gérer votre compte</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Transferts -->
+            <div class="faq-item" data-category="transfer">
+                <div class="faq-question">
+                    <h3>Quels sont les frais de transfert ?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Nos frais de transfert :</p>
+                    <ul>
+                        <li>Entre comptes SafeBank : Gratuit</li>
+                        <li>Vers d'autres banques : 0.5%</li>
+                        <li>Transferts internationaux : 1%</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../page_js/faq.js"></script>
+
+    
+</body>
+</html> 

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeBank - Connexion Administrateur</title>
+    <link rel="stylesheet" href="../pages_css/admin-login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <div class="card-header">
+                <div class="logo">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h1>SafeBank Admin</h1>
+                <p>Espace administrateur sécurisé</p>
+            </div>
+
+            <form id="admin-login-form" class="login-form">
+                <div class="form-group">
+                    <label for="username">
+                        <i class="fas fa-user"></i>
+                        Identifiant
+                    </label>
+                    <input 
+                        type="text" 
+                        id="username" 
+                        name="username" 
+                        required 
+                        autocomplete="username"
+                        placeholder="Votre identifiant"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="password">
+                        <i class="fas fa-lock"></i>
+                        Mot de passe
+                    </label>
+                    <div class="password-input">
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            required 
+                            autocomplete="current-password"
+                            placeholder="Votre mot de passe"
+                        >
+                        <button type="button" class="toggle-password" aria-label="Afficher/Masquer le mot de passe">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-group remember-me">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="remember" id="remember">
+                        <span class="checkbox-custom"></span>
+                        Se souvenir de moi
+                    </label>
+                    <a href="#" class="forgot-password">Mot de passe oublié ?</a>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="login-button">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Connexion
+                    </button>
+                </div>
+
+                <div class="security-info">
+                    <i class="fas fa-lock"></i>
+                    <p>Connexion sécurisée avec chiffrement SSL</p>
+                </div>
+            </form>
+
+            <div class="login-footer">
+                <div class="two-factor-auth">
+                    <i class="fas fa-shield-alt"></i>
+                    <p>Authentification à deux facteurs activée</p>
+                </div>
+                <div class="help-contact">
+                    <a href="#" class="help-link">
+                        <i class="fas fa-question-circle"></i>
+                        Besoin d'aide ?
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../page_js/admin-login.js"></script>
+</body>
+</html> 
